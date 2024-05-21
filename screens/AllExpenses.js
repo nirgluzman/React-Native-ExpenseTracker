@@ -7,5 +7,11 @@ export default function AllExpenses() {
   // hook that allows the component to access the values stored in React context.
   const expensesCtx = useContext(ExpensesContext);
 
-  return <ExpensesOutput expenses={expensesCtx.expenses} expensesPeriod='Total' />;
+  return (
+    <ExpensesOutput
+      expenses={expensesCtx.expenses}
+      expensesPeriod='Total'
+      fallbackText='No expenses registered yet'
+    />
+  );
 }
