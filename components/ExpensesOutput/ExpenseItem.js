@@ -4,9 +4,6 @@ import { useNavigation } from '@react-navigation/native';
 // global styles for the project
 import { GlobalStyles } from '../../constants/styles.js';
 
-// helper function to format the date
-import { getFormattedDate } from '../../util/date.js';
-
 export default function ExpenseItem({ id, description, amount, date }) {
   const navigation = useNavigation();
 
@@ -19,7 +16,7 @@ export default function ExpenseItem({ id, description, amount, date }) {
       <View style={styles.expenseItem}>
         <View>
           <Text style={[styles.textBase, styles.description]}>{description}</Text>
-          <Text style={styles.textBase}>{getFormattedDate(date)}</Text>
+          <Text style={styles.textBase}>{date.toLocaleDateString('en-GB')}</Text>
         </View>
         <View style={styles.amountContainer}>
           <Text style={styles.amount}>{amount.toFixed(2)}</Text>
