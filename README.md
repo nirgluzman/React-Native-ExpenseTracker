@@ -3,6 +3,7 @@
 ### GitHub repo
 
 https://github.com/nirgluzman/React-Native-ExpenseTracker.git
+https://github.com/academind/react-native-practical-guide-code
 
 ### Start a new React Native project with Expo
 
