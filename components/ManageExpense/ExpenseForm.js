@@ -1,4 +1,4 @@
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
 
 import Input from './Input.js';
 
@@ -11,29 +11,27 @@ export default function ExpenseForm() {
         label='Amount'
         textInputConfig={{
           keyboardType: 'decimal-pad',
-          onChangeText: amountChangedHandler
+          onChangeText: amountChangedHandler // callback that is called when the text input's text changes.
         }}
       />
       <Input
         label='Date'
         textInputConfig={{
-          placeHolder: 'DD/MM/YYYY',
-          maxLength: 10
+          placeHolder: 'DD.MM.YYYY', // the string that will be rendered before text input has been entered.
+          maxLength: 10 // limits the maximum number of characters that can be entered.
           // onChangeText: dateChangedHandler
         }}
       />
       <Input
         label='Description'
         textInputConfig={{
-          multiline: true,
-          numberOfLines: 3,
-          autoCorrect: false, // default is true
-          autoCapitalize: 'none' // don't auto capitalize anything
+          multiline: true, // if true, the text input can be multiple lines; default is false.
+          numberOfLines: 3, // sets the number of lines for a TextInput. Use it with multiline set to true to be able to fill the lines.
+          autoCorrect: false, // default is true.
+          autoCapitalize: 'none' // none = don't auto capitalize anything; default = sentences (first letter of each sentence).
           // onChangeText: descriptionChangedHandler
         }}
       />
     </View>
   );
 }
-
-const styles = StyleSheet.create({});
