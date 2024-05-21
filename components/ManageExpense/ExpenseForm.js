@@ -3,7 +3,14 @@ import { StyleSheet, Text, View } from 'react-native';
 import Input from './Input.js';
 
 export default function ExpenseForm() {
-  function amountChangedHandler() {}
+  const [amountValue, setAmountValue] = useState('');
+  const [dateValue, setDateValue] = useState('');
+  const [descriptionValue, setDescriptionValue] = useState('');
+
+  function amountChangedHandler(enteredAmount) {
+    // React passed the value for enteredAmount automatically if we connect this function to onChangeText property).
+    setAmountValue(enteredText);
+  }
 
   return (
     <View style={styles.form}>
@@ -14,7 +21,8 @@ export default function ExpenseForm() {
           style={styles.rowInput}
           textInputConfig={{
             keyboardType: 'decimal-pad',
-            onChangeText: amountChangedHandler // callback that is called when the text input's text changes.
+            onChangeText: amountChangedHandler, // callback that is called when the text input's text changes.
+            value: amountValue // two-way binding; the value to show for the text input (TextInput is a controlled component - the native value will be forced to match this value prop if provided).
           }}
         />
         <Input
