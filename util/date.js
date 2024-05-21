@@ -1,36 +1,15 @@
 // helper functions
 
-// format the date to DD-MM-YYYY
-const monthNames = [
-  'Jan',
-  'Feb',
-  'Mar',
-  'Apr',
-  'May',
-  'Jun',
-  'Jul',
-  'Aug',
-  'Sep',
-  'Oct',
-  'Nov',
-  'Dec'
-];
-
-export function getFormattedDate(date) {
-  return `${('0' + date.getDate()).slice(-2)}-${monthNames[date.getMonth()]}-${date.getFullYear()}`;
-}
-
-// convert the input date string (DD.MM.YYYY) to JavaScript Date object format (YYYY-MM-DD).
+// convert the date format from DD/MM/YYYY to JavaScript Date object format.
 export function convertDateString(dateString) {
-  // Split the string using a dot (.) as delimiter.
-  const parts = dateString.split('.');
+  // split the string using "/" as delimiter.
+  const [day, month, year] = dateString.split('/');
 
-  const year = parts[2];
-  const month = parts[1];
-  const day = parts[0];
+  // create a JavaScript Date object from the date string.
+  const dateObj = new Date(+year, +month - 1, +day);
 
-  // return the date in JavaScript Date object format (YYYY-MM-DD).
-  return `${year}-${month}-${day}`;
+  // return the date in JavaScript Date object format.
+  return dateObj;
 }
 
 // calculate the date of the day which is 'days' before 'date'.
