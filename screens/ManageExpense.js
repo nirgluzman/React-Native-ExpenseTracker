@@ -7,7 +7,6 @@ import { GlobalStyles } from '../constants/styles.js';
 import { ExpensesContext } from '../store/expenses-context.js';
 
 import ExpenseForm from '../components/ManageExpense/ExpenseForm.js';
-import Button from '../components/UI/Button.js';
 import IconButton from '../components/UI/IconButton.js';
 
 export default function ManageExpense({ route, navigation }) {
@@ -34,35 +33,23 @@ export default function ManageExpense({ route, navigation }) {
     navigation.goBack(); // method to let us go back to the previous screen in the navigator.
   }
 
-  function confirmHandler() {
+  function confirmHandler(expenseData) {
     isEditing
       ? // update expense
-        expensesCtx.updateExpense(editedExpenseId, {
-          description: 'Test!!!!',
-          amount: 10.99,
-          date: new Date()
-        })
+        expensesCtx.updateExpense(editedExpenseId, expenseData)
       : // add expense
-        expensesCtx.addExpense({
-          description: 'Test',
-          amount: 19.99,
-          date: new Date()
-        });
+        expensesCtx.addExpense(expenseData);
 
     navigation.goBack(); // method to let us go back to the previous screen in the navigator.
   }
 
   return (
     <View style={styles.container}>
-      <ExpenseForm />
-      <View style={styles.buttons}>
-        <Button style={styles.button} mode='flat' onPress={cancelHandler}>
-          Cancel
-        </Button>
-        <Button style={styles.button} onPress={confirmHandler}>
-          {isEditing ? 'Update' : 'Add'}
-        </Button>
-      </View>
+      <ExpenseForm
+        submitButtonLabel={isEditing ? 'Update' : 'Add'}
+        onSubmit={confirmHandler}
+        onCancel={cancelHandler}
+      />
 
       {isEditing && (
         <View style={styles.deleteContainer}>
@@ -83,17 +70,6 @@ const styles = StyleSheet.create({
     flex: 1, // takes up all available space when there are no sibling elements.
     padding: 24,
     backgroundColor: GlobalStyles.colors.primary800
-  },
-
-  buttons: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-
-  button: {
-    minWidth: 120,
-    marginHorizontal: 8
   },
 
   deleteContainer: {

@@ -2,8 +2,12 @@ import { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import Input from './Input.js';
+import Button from '../UI/Button.js';
 
-export default function ExpenseForm() {
+// helper function to convert the input date string (DD.MM.YYYY) to JavaScript Date object format (YYYY-MM-DD).
+import { convertDateString } from '../../util/date.js';
+
+export default function ExpenseForm({ submitButtonLabel, onSubmit, onCancel }) {
   const [inputValues, setInputValues] = useState({
     amount: '',
     date: '',
@@ -18,6 +22,16 @@ export default function ExpenseForm() {
         [inputIdentifier]: enteredValue // [<variable>] syntax allows us to dynamically target and set propery names.
       };
     });
+  }
+
+  function submitHandler() {
+    const expenseData = {
+      amount: +inputValues.amount, // + converts string to number.
+      date: new Date(convertDateString(inputValues.date)),
+      description: inputValues.description
+    };
+
+    onSubmit(expenseData);
   }
 
   return (
@@ -44,7 +58,6 @@ export default function ExpenseForm() {
           }}
         />
       </View>
-
       <Input
         label='Description'
         textInputConfig={{
@@ -56,6 +69,16 @@ export default function ExpenseForm() {
           value: inputValues.description // two-way binding.
         }}
       />
+
+      {/* Form submission */}
+      <View style={styles.buttons}>
+        <Button style={styles.button} mode='flat' onPress={onCancel}>
+          Cancel
+        </Button>
+        <Button style={styles.button} onPress={submitHandler}>
+          {submitButtonLabel}
+        </Button>
+      </View>
     </View>
   );
 }
@@ -80,5 +103,15 @@ const styles = StyleSheet.create({
 
   rowInput: {
     flex: 1 // take up as much space as possible
+  },
+  buttons: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+
+  button: {
+    minWidth: 120,
+    marginHorizontal: 8
   }
 });
