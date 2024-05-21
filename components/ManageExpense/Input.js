@@ -3,7 +3,7 @@ import { StyleSheet, Text, TextInput, View } from 'react-native';
 // global styles for the project
 import { GlobalStyles } from '../../constants/styles.js';
 
-export default function Input({ label, textInputConfig }) {
+export default function Input({ label, style, textInputConfig }) {
   let inputStyles = [styles.input];
 
   // multiline aligns the text to the top on iOS, and centers it on Android.
@@ -14,7 +14,7 @@ export default function Input({ label, textInputConfig }) {
   }
 
   return (
-    <View style={styles.inputContainer}>
+    <View style={[styles.inputContainer, style]}>
       <Text style={styles.label}>{label}</Text>
       <TextInput style={inputStyles} {...textInputConfig} />
     </View>
