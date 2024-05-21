@@ -17,6 +17,9 @@ export default function ManageExpense({ route, navigation }) {
   const editedExpenseId = route.params?.expenseId;
   const isEditing = !!editedExpenseId;
 
+  // fetch the expense data from the context (so Fetch current expense details from context to initialize the ExpenseForm).
+  const selectedExpense = expensesCtx.expenses.find(expense => expense.id === editedExpenseId);
+
   // set the title of the screen dynamically
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -49,6 +52,7 @@ export default function ManageExpense({ route, navigation }) {
         submitButtonLabel={isEditing ? 'Update' : 'Add'}
         onSubmit={confirmHandler}
         onCancel={cancelHandler}
+        defaultValues={selectedExpense} 
       />
 
       {isEditing && (

@@ -4,14 +4,14 @@ import { StyleSheet, Text, View } from 'react-native';
 import Input from './Input.js';
 import Button from '../UI/Button.js';
 
-// helper function to convert the input date string (DD.MM.YYYY) to JavaScript Date object format (YYYY-MM-DD).
+// helper function to convert the date format
 import { convertDateString } from '../../util/date.js';
 
-export default function ExpenseForm({ submitButtonLabel, onSubmit, onCancel }) {
+export default function ExpenseForm({ submitButtonLabel, onSubmit, onCancel, defaultValues }) {
   const [inputValues, setInputValues] = useState({
-    amount: '',
-    date: '',
-    description: ''
+    amount: defaultValues ? defaultValues.amount.toString() : '',
+    date: defaultValues ? defaultValues.date.toLocaleDateString('en-GB') : '',
+    description: defaultValues ? defaultValues.description : ''
   });
 
   function inputChangedHandler(inputIdentifier, enteredValue) {
@@ -51,7 +51,7 @@ export default function ExpenseForm({ submitButtonLabel, onSubmit, onCancel }) {
           label='Date'
           style={styles.rowInput}
           textInputConfig={{
-            placeholder: 'DD.MM.YYYY', // the string that will be rendered before text input has been entered.
+            placeholder: 'DD/MM/YYYY', // the string that will be rendered before text input has been entered.
             maxLength: 10, // limits the maximum number of characters that can be entered.
             onChangeText: inputChangedHandler.bind(this, 'date'), // callback that is called when the text input's text changes.
             value: inputValues.date // two-way binding.
