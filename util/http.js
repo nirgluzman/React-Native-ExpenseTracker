@@ -24,7 +24,7 @@ export async function fetchExpenses() {
     const expenseObj = {
       id: key,
       amount: response.data[key].amount,
-      date: new Data(response.data[key].date), // Firebase stores the date in a string format, we would like to convert it back to Date object.
+      date: new Date(response.data[key].date), // Firebase stores the date in a string format, we would like to convert it back to Date object.
       description: response.data[key].description
     };
     expenses.push(expenseObj);
