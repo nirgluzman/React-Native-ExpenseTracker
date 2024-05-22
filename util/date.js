@@ -6,7 +6,7 @@ export function convertDateString(dateString) {
   const [day, month, year] = dateString.split('/');
 
   // create a JavaScript Date object from the date string.
-  const dateObj = new Date(+year, +month - 1, +day);
+  const dateObj = new Date(+year, +month - 1, +day); // NOTE: the month should be 0-indexed when using 'new Date(year, month, ...)'
 
   // return the date in JavaScript Date object format.
   return dateObj;
