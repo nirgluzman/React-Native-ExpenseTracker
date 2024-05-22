@@ -77,11 +77,16 @@ export default function ManageExpense({ route, navigation }) {
   }
 
   // display an error message if an error occurred while modifying an expense in the database.
-  function errorHandler() {
-    setError(null);
-  }
+  // function errorHandler() { // this function is not used since we removed Button from ErrorOverlay component.
+  //   setError(null);
+  // }
   if (error && !isSubmitting) {
-    return <ErrorOverlay message={error} onConfirm={errorHandler} />;
+    return (
+      <ErrorOverlay
+        message={error}
+        // onConfirm={errorHandler}
+      />
+    );
   }
 
   // display a loading spinner while modifying Firebase Realtime database (delete, add, update).

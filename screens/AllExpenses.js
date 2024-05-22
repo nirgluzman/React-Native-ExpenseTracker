@@ -39,11 +39,16 @@ export default function AllExpenses() {
   );
 
   // display an error message if an error occurred while fetching expenses.
-  function errorHandler() {
-    setError(null);
-  }
+  // function errorHandler() { // this function is not used since we removed Button from ErrorOverlay component.
+  //   setError(null);
+  // }
   if (error && !isFetching) {
-    return <ErrorOverlay message={error} onConfirm={errorHandler} />;
+    return (
+      <ErrorOverlay
+        message={error}
+        // onConfirm={errorHandler}
+      />
+    );
   }
 
   // display a loading spinner while expenses are being fetched from Firebase.
