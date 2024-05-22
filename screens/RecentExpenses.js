@@ -1,4 +1,4 @@
-import { useEffect, useContext } from 'react';
+import { useContext } from 'react';
 
 import { ExpensesContext } from '../store/expenses-context.js';
 import ExpensesOutput from '../components/ExpensesOutput/ExpensesOutput';
