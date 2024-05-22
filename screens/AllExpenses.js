@@ -26,8 +26,8 @@ export default function AllExpenses() {
         try {
           const expenses = await fetchExpenses(); // await only defers execution of code that actually depends on the result, i.e. anything after the await expression.
           expensesCtx.setExpenses(expenses); // update the state of the context with expenses fetched from the database.
-        } catch (error) {
-          console.log(error);
+        } catch (err) {
+          console.log(err);
           setError('Could not fetch expenses!'); // set error message.
         }
         setIsFetching(false); // disable loading spinner.
