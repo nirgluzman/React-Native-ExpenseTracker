@@ -35,3 +35,8 @@ npm install @react-navigation/native-stack
 ```bash
 npm install @react-navigation/bottom-tabs
 ```
+
+### Date validation - general comment
+
+- If we require stricter validation and error handling, or work with complex date manipulation,
+  consider using a library like moment.js.
