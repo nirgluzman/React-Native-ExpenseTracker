@@ -21,11 +21,12 @@ export default function ManageExpense({ route, navigation }) {
   // hook that allows the component to access the values stored in React context.
   const expensesCtx = useContext(ExpensesContext);
 
-  // exctract the expenseId from the route params; the value is 'undefinded' (no value is passed) when we clicked 'add expense'.
+  // exctract the expenseId from the route params.
+  // the value is 'undefinded' (i.e. no value is passed) when we click 'add expense'.
   const editedExpenseId = route.params?.expenseId;
   const isEditing = !!editedExpenseId;
 
-  // fetch the expense data from the context (so Fetch current expense details from context to initialize the ExpenseForm).
+  // fetch the expense data from the context (we can use these details to initialize the ExpenseForm with current info).
   const selectedExpense = expensesCtx.expenses.find(expense => expense.id === editedExpenseId);
 
   // set the title of the screen dynamically
