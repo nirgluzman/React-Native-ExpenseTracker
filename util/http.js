@@ -6,15 +6,15 @@ import axios from 'axios';
 // Firebase Realtime Database
 const BACKEND_URL = 'https://react-native-expensetrac-ee298-default-rtdb.firebaseio.com/';
 
-// store expense to database.
+// store an expense in the database.
 export async function storeExpense(expenseData) {
   const response = await axios.post(BACKEND_URL + 'expenses.json', expenseData);
   const id = response.data.name; // extract the auto generated 'id' by Firebase.
-  
+
   return id;
 }
 
-// fetch all expenses from database
+// fetch all expenses from the database.
 export async function fetchExpenses() {
   const response = await axios.get(BACKEND_URL + 'expenses.json');
 
@@ -31,4 +31,14 @@ export async function fetchExpenses() {
   }
 
   return expenses;
+}
+
+// update an expense in the database.
+export function updateExpense(id, expenseData) {
+  return axios.put(BACKEND_URL + `expenses/${id}.json`, expenseData);
+}
+
+// delete an expense from the database.
+export function deleteExpense(id) {
+  return axios.delete(BACKEND_URL + `expenses/${id}.json`);
 }
